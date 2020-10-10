@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Button from './../../components/forms/Button'
 import { signInwithGoogle , auth } from './../../firebase/utils';
 import FormInput from './../forms/Forminput';
-
+import {Link} from 'react-router-dom';
+import AuthWrapper from './../AuthWrapper';
 import './styles.scss';
 
 
@@ -47,14 +48,13 @@ handleChange(e){
 render(){
 
     const {email,password} = this.state;
+    
+    const configAuthWrapper={
+        headline:'Login'
+    };
 
     return (
-        <div className="signin">
-          <div className="wrap">
-              <h2>
-                  Login
-              </h2>
-              
+       <AuthWrapper {...configAuthWrapper}>          
           <div className="formWrap">
               <form onSubmit={this.handleSubmit}>
 
@@ -82,10 +82,15 @@ render(){
                       </Button>
                       </div>
                   </div>
+                  <div className="links">
+                      <Link to="/recovery">
+                        Reset Password
+                      </Link> 
+                  </div>
+
               </form>
           </div>
-          </div> 
-        </div>
+        </AuthWrapper>
     );
 }
 }
