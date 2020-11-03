@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import {Switch,Route,Redirect} from 'react-router-dom';
-import { auth , handleUserProfile } from './firebase/utils';
-import { setCurrentUser } from './redux/User/user.actions';
+import { useDispatch } from 'react-redux';
+import {Switch,Route} from 'react-router-dom';
+import { checkUserSession } from './redux/User/user.actions';
 
 //hoc - higher order component 
 import WithAuth from './hoc/withAuth';
@@ -23,28 +22,9 @@ import Dashboard from './pages/Dashboard';
 const App = props =>
 {
   const dispatch = useDispatch();
-//setup event listeners
 
 useEffect(()=>{
-
-   const authListener = auth.onAuthStateChanged(async userAuth => {
-    if (userAuth) {
-      const userRef = await handleUserProfile(userAuth);
-      userRef.onSnapshot(snapshot => {
-        dispatch(setCurrentUser({
-            id: snapshot.id,
-            ...snapshot.data()
-        }));
-      })
-    }
-
-    dispatch(setCurrentUser(userAuth));
-  });
-
-  return () => {
-     authListener();
-  };
-
+  dispatch(checkUserSession());
 }, []);
 
     return (
