@@ -13,7 +13,8 @@ import WithAdminAuth from './hoc/withAdminAuth';
 //Layouts Here
 import MainLayout from './layouts/MainLayout';
 import HomepageLayout from './layouts/HomepageLayout';
-
+import AdminLayout from './layouts/AdminLayout';
+import DashboardLayout from './layouts/DashboardLayout';
 
 //Pages here
 import Homepage from './pages/Homepage';
@@ -61,17 +62,17 @@ useEffect(()=>{
              <Route path="/admin"
              render={()=>(
               <WithAdminAuth>
-              <MainLayout>
+              <AdminLayout>
                 <Admin/>
-              </MainLayout>
+              </AdminLayout>
               </WithAdminAuth>
              )}/>
              <Route path="/dashboard" 
              render={()=>(
               <WithAuth>
-                  <MainLayout>
+                  <DashboardLayout>
                     <Dashboard/>
-                  </MainLayout>
+                  </DashboardLayout>
               </WithAuth>   
              )}/>
              
