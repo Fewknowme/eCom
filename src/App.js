@@ -20,6 +20,7 @@ import DashboardLayout from './layouts/DashboardLayout';
 import Homepage from './pages/Homepage';
 import Registration from './pages/Registration';
 import Login from './pages/Login';
+import Search from './pages/Search';
 import Recovery from './pages/Recovery';
 import './default.scss';
 import Dashboard from './pages/Dashboard';
@@ -41,6 +42,11 @@ useEffect(()=>{
               <HomepageLayout>
                  <Homepage/>
               </HomepageLayout>
+            )}/>
+              <Route path="/search" render={()=>(
+              <MainLayout>
+                 <Search />
+              </MainLayout>
             )}/>
             <Route path="/registration" render={()=>(
               <MainLayout>
